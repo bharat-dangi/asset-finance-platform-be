@@ -5,14 +5,13 @@ import { UserService } from "../service/user.service";
 import { container } from "../config/dependency";
 import { GetUser, User } from "../types/user.types";
 
+/**
+ * @class UserController
+ * @description Controller class for managing user-related operations.
+ */
 class UserController {
   /**
-   * Handles the creation of a new user.
-   * It uses the UserService to create a user with the data provided in the request body.
-   * @static
-   * @method createUser
-   * @returns {Promise<void>} A promise that resolves to an Express response object
-   * with the operation result or passes control to the next middleware in case of an error.
+   * Handles the creation of a new user using the UserService.
    */
   static async createUser(req: Request, res: Response, next: NextFunction) {
     try {
@@ -29,11 +28,7 @@ class UserController {
   }
 
   /**
-   * Retrieves all users based on the criteria provided in the request body.
-   *
-   * @static
-   * @method getAllUsers
-   * @returns {Promise<void>} A promise that resolves to sending a JSON response with the result or handling an error.
+   * Retrieves all users based on the criteria provided in the request body using the UserService.
    */
   static async getAllUsers(req: Request, res: Response, next: NextFunction) {
     try {

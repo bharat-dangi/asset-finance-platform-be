@@ -123,7 +123,7 @@ export class ApplicationService {
   updateApplication = async (payload: UpdateApplication): Promise<PromiseResponse<Application | null, Error>> => {
     try {
       // Initialize criteria object for updating a single application
-      const criteria: { _id: string } = { _id: payload?._id };
+      const criteria: { _id: string } = { _id: payload._id };
 
       // Remove the _id from the update data to prevent modification of the primary key
       const updateData: Partial<UpdateApplication> = { ...payload };

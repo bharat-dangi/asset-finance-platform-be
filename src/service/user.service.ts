@@ -4,7 +4,7 @@ import { GetUser, User } from "../types/user.types";
 
 /**
  * @class UserService
- * @description Service class that handles user-related business logic.
+ * @description Service class that handles user-related business logic, including tasks like creating and retrieving users.
  */
 export class UserService {
   userRepository: UserRepository;

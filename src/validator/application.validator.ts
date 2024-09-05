@@ -51,8 +51,4 @@ export const DeleteApplicationSchema = Joi.object({
 export const updateApplicationSchema = Joi.object({
   _id: Joi.string().required(), // Required string for the unique identifier of the application to be updated
   userId: Joi.string().required(), // Required string for the user ID of the applicant
-  income: Joi.number().required(), // Required number for the updated income of the applicant
-  expenses: Joi.number().required(), // Required number for the updated expenses of the applicant
-  assets: Joi.number().required(), // Required number for the updated assets of the applicant
-  liabilities: Joi.number().required(), // Required number for the updated liabilities of the applicant
-});
+}).concat(FinanceDetailsSchema);

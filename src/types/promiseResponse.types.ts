@@ -1,10 +1,9 @@
 /**
  * @interface PromiseResponse
  * @description A generic interface for defining the structure of a response object used in asynchronous operations,
- * especially in service methods.
- * This interface is designed to handle both successful responses and errors.
- * @template DataType The type of the data property, representing the successful response data.
- * @template ErrorType The type of the error property, representing the error details when an operation fails.
+ * especially in service methods. This interface is designed to handle both successful responses and errors.
+ * @template DataType - The type of the data property, representing the successful response data.
+ * @template ErrorType - The type of the error property, representing the error details when an operation fails.
  */
 export interface PromiseResponse<DataType, ErrorType> {
   /**
