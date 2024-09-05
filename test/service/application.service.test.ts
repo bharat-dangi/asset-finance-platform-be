@@ -2,7 +2,7 @@ import { Types } from "mongoose";
 import { container } from "../../src/config/dependency";
 import { ApplicationDSBase } from "../../src/data/source/application/application.data.source.base";
 import { ApplicationService } from "../../src/service/application.service";
-import { Application, UpdateApplication } from "../../src/types/application.types";
+import { Application } from "../../src/types/application.types";
 import { mockApplication } from "../data/mocks/application.data.mocks";
 import { registerMockDependencies } from "../dependencies/register.dependencies";
 
