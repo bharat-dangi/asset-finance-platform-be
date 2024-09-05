@@ -3,6 +3,9 @@ import { ApplicationModel } from "../../model/application.model";
 import { ApplicationDSBase } from "./application.data.source.base";
 
 export class ApplicationDS implements ApplicationDSBase {
+  async deleteOne(criteria: any, options: any): Promise<Application | null> {
+    return ApplicationModel.findOneAndDelete(criteria, { ...options, lean: true });
+  }
   async insertOne(data: any): Promise<Application> {
     return await ApplicationModel.create(data);
   }

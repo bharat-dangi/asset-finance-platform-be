@@ -1,10 +1,11 @@
 import * as awilix from "awilix";
 import { ApplicationDS } from "../data/source/application/application.data.source";
 import { ApplicationRepository } from "../data/repository/application.repository";
+import { ApplicationService } from "../service/application.service";
 
 /**
  * @constant {AwilixContainer} container
- * @description Dependency injection container created using Awilix. 
+ * @description Dependency injection container created using Awilix.
  * This container will manage all the dependencies of the application, allowing for better modularity and testability.
  */
 export const container = awilix.createContainer({
@@ -13,7 +14,7 @@ export const container = awilix.createContainer({
 
 /**
  * @function registerDependencies
- * @description Registers all the necessary dependencies in the Awilix container. 
+ * @description Registers all the necessary dependencies in the Awilix container.
  * This function maps classes to their respective dependencies, enabling dependency injection throughout the application.
  * @returns {void} This function does not return a value but sets up the dependency injection container.
  */
@@ -22,6 +23,7 @@ export const registerDependencies = () => {
     // Application Related Dependencies
     ApplicationDS: awilix.asClass(ApplicationDS),
     ApplicationRepo: awilix.asClass(ApplicationRepository),
+    ApplicationService: awilix.asClass(ApplicationService),
   });
 
   console.log(`Dependencies: Registered`.blue.underline.bold);

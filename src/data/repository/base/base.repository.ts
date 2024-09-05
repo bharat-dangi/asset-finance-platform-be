@@ -7,6 +7,9 @@ export class BaseRepository<T> implements Repository<T> {
   constructor(dataSource: DatabaseDSBase<T>) {
     this.dataSource = dataSource;
   }
+  async deleteOne(criteria: any, options: any): Promise<T | null> {
+    return await this.dataSource.deleteOne(criteria, options);
+  }
 
   async count(criteria: any): Promise<number> {
     return await this.dataSource.count(criteria);

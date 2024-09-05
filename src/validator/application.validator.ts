@@ -29,5 +29,4 @@ const FinanceDetailsSchema = Joi.object({
  */
 export const ApplicationSchema = Joi.object({
   personalDetails: PersonalDetailsSchema.required(),
-  ...FinanceDetailsSchema.describe().keys, // Spread the keys from financeDetailsSchema
-});
+}).concat(FinanceDetailsSchema);

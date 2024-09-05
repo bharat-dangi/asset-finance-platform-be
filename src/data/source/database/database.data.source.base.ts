@@ -13,5 +13,6 @@ export abstract class DatabaseDSBase<T> {
   abstract findOne(criteria: any, options: any): Promise<T | null>;
   abstract updateOne(criteria: any, updateData: any, options: any): Promise<T | null>;
   abstract updateMany(criteria: any, updateData: any, options: any): Promise<T[]>;
+  abstract deleteOne(criteria: any, options: any): Promise<T | null>;
   abstract count(criteria: any): Promise<number>;
 }
