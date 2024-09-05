@@ -3,7 +3,7 @@ import { ErrorResponse } from "../types/errorResponse.types";
 import { buildResponse } from "../utils/response.utils";
 import { ApplicationService } from "../service/application.service";
 import { container } from "../config/dependency";
-import { Application } from "../types/application.types";
+import { Application, DeleteApplication, GetApplication } from "../types/application.types";
 
 /**
  * @class ApplicationController
@@ -28,6 +28,47 @@ class ApplicationController {
       const payloadData: Application = req?.body;
 
       const { data, error } = await applicationService.createApplication(payloadData);
+      if (error) return next(new ErrorResponse(error, 500));
+      return res.status(200).json(buildResponse(true, data, "success"));
+    } catch (error) {
+      console.error(error);
+      return next(new ErrorResponse(error, 500));
+    }
+  }
+
+  static async getAllApplications(req: Request, res: Response, next: NextFunction) {
+    try {
+      const applicationService: ApplicationService = container.resolve("ApplicationService") as ApplicationService;
+      const payload: GetApplication = req.body;
+      const { data, error } = await applicationService.getAllApplications(payload);
+      if (error) return next(new ErrorResponse(error, 500));
+      return res.status(200).json(buildResponse(true, data, "success"));
+    } catch (error) {
+      console.error(error);
+      return next(new ErrorResponse(error, 500));
+    }
+  }
+
+  static async getOneApplication(req: Request, res: Response, next: NextFunction) {
+    try {
+      const applicationService: ApplicationService = container.resolve("ApplicationService") as ApplicationService;
+      const payloadData: GetApplication = req?.body;
+
+      const { data, error } = await applicationService.getOneApplication(payloadData);
+      if (error) return next(new ErrorResponse(error, 500));
+      return res.status(200).json(buildResponse(true, data, "success"));
+    } catch (error) {
+      console.error(error);
+      return next(new ErrorResponse(error, 500));
+    }
+  }
+
+  static async deleteOneApplication(req: Request, res: Response, next: NextFunction) {
+    try {
+      const applicationService: ApplicationService = container.resolve("ApplicationService") as ApplicationService;
+      const payloadData: DeleteApplication = req?.body;
+
+      const { data, error } = await applicationService.deleteOneApplication(payloadData);
       if (error) return next(new ErrorResponse(error, 500));
       return res.status(200).json(buildResponse(true, data, "success"));
     } catch (error) {

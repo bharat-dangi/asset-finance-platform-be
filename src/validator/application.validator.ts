@@ -30,3 +30,15 @@ const FinanceDetailsSchema = Joi.object({
 export const ApplicationSchema = Joi.object({
   personalDetails: PersonalDetailsSchema.required(),
 }).concat(FinanceDetailsSchema);
+
+export const GetApplicationSchema = Joi.object({
+  id: Joi.string().allow(null, "").optional(), // Optional string that allows null or an empty string
+  income: Joi.number().allow(null).optional(), // Optional number that allows null
+  expenses: Joi.number().allow(null).optional(), // Optional number that allows null
+  assets: Joi.number().allow(null).optional(), // Optional number that allows null
+  liabilities: Joi.number().allow(null).optional(), // Optional number that allows null
+});
+
+export const DeleteApplicationSchema = Joi.object({
+  id: Joi.string().required(), // Required string for the application ID
+});
