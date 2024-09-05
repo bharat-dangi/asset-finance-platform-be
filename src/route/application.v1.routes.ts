@@ -24,4 +24,8 @@ applicationV1Router
     ApplicationController.deleteOneApplication as RequestHandler,
   );
 
+applicationV1Router
+  .route("/update-one-application")
+  .patch(validationHandler(DeleteApplicationSchema), ApplicationController.updateOneApplication as RequestHandler);
+
 export { applicationV1Router };
