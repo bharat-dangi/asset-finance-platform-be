@@ -14,8 +14,8 @@ export class ApplicationDS implements ApplicationDSBase {
       lean: true,
     })) as Application[];
   }
-  async find(criteria: any, options: any, paginationOptions: any): Promise<Application[]> {
-    return await ApplicationModel.find(criteria, options, paginationOptions).lean().exec();
+  async find(criteria: any, options: any): Promise<Application[]> {
+    return await ApplicationModel.find(criteria, options).lean().exec();
   }
   async findOne(criteria: any, options: any): Promise<Application | null> {
     const applicationData = await ApplicationModel.findOne(criteria, options).lean().exec();

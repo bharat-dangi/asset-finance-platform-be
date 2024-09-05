@@ -23,8 +23,8 @@ export class BaseRepository<T> implements Repository<T> {
     return await this.dataSource.insertMany(data);
   }
 
-  async find(criteria: any, options: any, paginationOptions: any): Promise<T[]> {
-    return await this.dataSource.find(criteria, options, paginationOptions);
+  async find(criteria: any, options: any): Promise<T[]> {
+    return await this.dataSource.find(criteria, options);
   }
 
   async findOne(criteria: any, options: any): Promise<T | null> {
