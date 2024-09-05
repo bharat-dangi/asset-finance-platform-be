@@ -5,6 +5,7 @@ import { Types } from "mongoose";
  * @description Represents the details of a finance application.
  */
 export interface Application {
+  _id: Types.ObjectId; // The unique identifier of the application.
   userId: Types.ObjectId; // The ObjectId of the applicant's user.
   income: number; // The income of the applicant.
   expenses: number; // The expenses of the applicant.
@@ -18,7 +19,7 @@ export interface Application {
  * Used for filtering applications in queries.
  */
 export interface GetApplication {
-  _id?: string; // Optional ID of the application.
+  _id?: Types.ObjectId; // Optional ID of the application.
   income?: number; // Optional income of the applicant for filtering.
   expenses?: number; // Optional expenses of the applicant for filtering.
   assets?: number; // Optional assets of the applicant for filtering.
@@ -30,7 +31,7 @@ export interface GetApplication {
  * @description Represents the information required to delete a finance application, including the application ID.
  */
 export interface DeleteApplication {
-  _id: string; // The unique identifier of the application to be deleted.
+  _id: Types.ObjectId; // The unique identifier of the application to be deleted.
 }
 
 /**
@@ -38,10 +39,10 @@ export interface DeleteApplication {
  * @description Represents the details required to update a finance application.
  */
 export interface UpdateApplication {
-  _id: string; // The unique identifier of the application to be updated.
-  userId: Types.ObjectId; // The ObjectId of the applicant's user.
-  income: number; // The updated income of the applicant.
-  expenses: number; // The updated expenses of the applicant.
-  assets: number; // The updated assets of the applicant.
-  liabilities: number; // The updated liabilities of the applicant.
+  _id: Types.ObjectId; // The unique identifier of the application to be updated.
+  userId?: Types.ObjectId; // The ObjectId of the applicant's user.
+  income?: number; // The updated income of the applicant.
+  expenses?: number; // The updated expenses of the applicant.
+  assets?: number; // The updated assets of the applicant.
+  liabilities?: number; // The updated liabilities of the applicant.
 }

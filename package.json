@@ -7,8 +7,8 @@
     "start": "ts-node server.ts --transpile-only",
     "dev": "nodemon",
     "test": "NODE_ENV=testing jest",
-    "test-unit": "NODE_ENV=testing jest --testPathPattern units --silent",
-    "test-dev": "NODE_ENV=testing jest --testPathPattern units ",
+    "test-unit": "NODE_ENV=testing jest --testPathPattern test --silent",
+    "test-dev": "NODE_ENV=testing jest --testPathPattern test ",
     "test-watch": "NODE_ENV=testing jest --watch"
   },
   "jest": {

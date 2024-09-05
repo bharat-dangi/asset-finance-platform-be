@@ -1,3 +1,4 @@
+import { Types } from "mongoose";
 import { ApplicationRepository } from "../data/repository/application.repository";
 import { Application, DeleteApplication, GetApplication, UpdateApplication } from "../types/application.types";
 import { PromiseResponse } from "../types/promiseResponse.types";
@@ -74,7 +75,7 @@ export class ApplicationService {
   getOneApplication = async (payload: GetApplication): Promise<PromiseResponse<Application | null, Error>> => {
     try {
       // Initialize criteria object for querying a single application
-      const criteria: { _id?: string } = {};
+      const criteria: { _id?: Types.ObjectId } = {};
 
       // Populate criteria based on the payload
       if (payload?._id) criteria._id = payload._id;
@@ -100,7 +101,7 @@ export class ApplicationService {
   deleteOneApplication = async (payload: DeleteApplication): Promise<PromiseResponse<Application | null, Error>> => {
     try {
       // Initialize criteria object for deleting a single application
-      const criteria: { _id: string } = { _id: payload._id };
+      const criteria: { _id: Types.ObjectId } = { _id: payload._id };
 
       // Delete the application in the repository that matches the criteria
       const applicationsData: Application | null = await this.applicationRepository.deleteOne(criteria, {});
@@ -123,7 +124,7 @@ export class ApplicationService {
   updateApplication = async (payload: UpdateApplication): Promise<PromiseResponse<Application | null, Error>> => {
     try {
       // Initialize criteria object for updating a single application
-      const criteria: { _id: string } = { _id: payload._id };
+      const criteria: { _id: Types.ObjectId } = { _id: payload?._id };
 
       // Remove the _id from the update data to prevent modification of the primary key
       const updateData: Partial<UpdateApplication> = { ...payload };
