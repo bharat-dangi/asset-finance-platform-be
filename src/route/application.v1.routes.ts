@@ -1,5 +1,5 @@
 import express, { RequestHandler } from "express";
-import { validationHandler } from "../middleware/validator.middleware";
+import { validationHandler, validationQueryHandler } from "../middleware/validator.middleware";
 import { ApplicationController } from "../controller/application.controller";
 import { ApplicationSchema, DeleteApplicationSchema, GetApplicationSchema } from "../validator/application.validator";
 
@@ -19,6 +19,9 @@ applicationV1Router
 
 applicationV1Router
   .route("/delete-one-application")
-  .post(validationHandler(DeleteApplicationSchema), ApplicationController.deleteOneApplication as RequestHandler);
+  .delete(
+    validationQueryHandler(DeleteApplicationSchema),
+    ApplicationController.deleteOneApplication as RequestHandler,
+  );
 
 export { applicationV1Router };

@@ -105,7 +105,7 @@ class ApplicationController {
       const applicationService: ApplicationService = container.resolve("ApplicationService") as ApplicationService;
 
       // Extract the payload from the request body
-      const payloadData: DeleteApplication = req?.body;
+      const payloadData: DeleteApplication = req?.params as any;
 
       // Call the service method to delete one application
       const { data, error } = await applicationService.deleteOneApplication(payloadData);

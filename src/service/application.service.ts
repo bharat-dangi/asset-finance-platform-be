@@ -55,6 +55,7 @@ export class ApplicationService {
       // Find applications in the repository that match the criteria
       const applicationsData: Application[] = await this.applicationRepository.find(criteria, {
         sort: { createdAt: -1 },
+        populate: ["userId"],
       });
 
       // Return the matching applications data

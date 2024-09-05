@@ -1,16 +1,4 @@
-// src/validators/applicationValidator.ts
-
 import Joi from "joi";
-
-/**
- * @constant PersonalDetailsSchema
- * @description Joi schema for validating personal details of a user.
- */
-const PersonalDetailsSchema = Joi.object({
-  name: Joi.string().required(),
-  age: Joi.number().integer().required(),
-  address: Joi.string().required(),
-});
 
 /**
  * @constant FinanceDetailsSchema
@@ -28,7 +16,7 @@ const FinanceDetailsSchema = Joi.object({
  * @description Joi schema for validating a complete finance application.
  */
 export const ApplicationSchema = Joi.object({
-  personalDetails: PersonalDetailsSchema.required(),
+  userId: Joi.string().required(),
 }).concat(FinanceDetailsSchema);
 
 export const GetApplicationSchema = Joi.object({

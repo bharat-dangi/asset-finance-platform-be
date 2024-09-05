@@ -1,29 +1,30 @@
 import { User } from "../../../types/user.types";
+import { UserModel } from "../../model/user.models";
 import { UserDSBase } from "./user.data.source.base";
 
 export class UserDS implements UserDSBase {
-  insertOne(data: any): Promise<User> {
-    throw new Error("Method not implemented.");
+  async insertOne(data: any): Promise<User> {
+    return await UserModel.create(data);
   }
-  insertMany(data: any): Promise<User[]> {
-    throw new Error("Method not implemented.");
+  async insertMany(data: any): Promise<User[]> {
+    return await UserModel.insertMany(data, { lean: true });
   }
-  find(criteria: any, options: any): Promise<User[]> {
-    throw new Error("Method not implemented.");
+  async find(criteria: any, options: any): Promise<User[]> {
+    return await UserModel.find(criteria, {}, options).lean().exec();
   }
-  findOne(criteria: any, options: any): Promise<User | null> {
-    throw new Error("Method not implemented.");
+  async findOne(criteria: any, options: any): Promise<User | null> {
+    return await UserModel.findOne(criteria, options).lean().exec();
   }
-  updateOne(criteria: any, updateData: any, options: any): Promise<User | null> {
-    throw new Error("Method not implemented.");
+  async updateOne(criteria: any, updateData: any, options: any): Promise<User | null> {
+    return UserModel.findOneAndUpdate(criteria, updateData, options).lean().exec();
   }
-  updateMany(criteria: any, updateData: any, options: any): Promise<User[]> {
-    throw new Error("Method not implemented.");
+  async updateMany(criteria: any, updateData: any, options: any): Promise<User[]> {
+    return UserModel.updateMany(criteria, updateData, options) as any;
   }
-  deleteOne(criteria: any, options: any): Promise<User | null> {
-    throw new Error("Method not implemented.");
+  async deleteOne(criteria: any, options: any): Promise<User | null> {
+    return await UserModel.findOneAndDelete(criteria, { ...options, lean: true });
   }
-  count(criteria: any): Promise<number> {
-    throw new Error("Method not implemented.");
+  async count(criteria: any): Promise<number> {
+    return await UserModel.count(criteria).lean().exec();
   }
 }

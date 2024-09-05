@@ -1,11 +1,11 @@
-import { User } from "./user.types";
+import { Types } from "mongoose";
 
 /**
  * @interface Application
  * @description Represents a finance application details.
  */
 export interface Application {
-  personalDetails: User; // Personal details of the applicant.
+  userId: Types.ObjectId; // User Id of the applicant.
   income: number; // Income of the applicant.
   expenses: number; // Expenses of the applicant.
   assets: number; // Assets of the applicant.

@@ -10,16 +10,15 @@ export class ApplicationDS implements ApplicationDSBase {
     return await ApplicationModel.create(data);
   }
   async insertMany(data: any): Promise<Application[]> {
-    return (await ApplicationModel.insertMany(data, {
+    return await ApplicationModel.insertMany(data, {
       lean: true,
-    })) as Application[];
+    });
   }
   async find(criteria: any, options: any): Promise<Application[]> {
-    return await ApplicationModel.find(criteria, options).lean().exec();
+    return await ApplicationModel.find(criteria, {}, options).lean().exec();
   }
   async findOne(criteria: any, options: any): Promise<Application | null> {
-    const applicationData = await ApplicationModel.findOne(criteria, options).lean().exec();
-    return applicationData;
+    return await ApplicationModel.findOne(criteria, options).lean().exec();
   }
   async updateOne(criteria: any, updateData: any, options: any): Promise<Application | null> {
     return await ApplicationModel.findOneAndUpdate(criteria, updateData, options).lean().exec();
