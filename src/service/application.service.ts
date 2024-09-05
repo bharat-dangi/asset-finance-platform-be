@@ -74,10 +74,10 @@ export class ApplicationService {
   getOneApplication = async (payload: GetApplication): Promise<PromiseResponse<Application | null, Error>> => {
     try {
       // Initialize criteria object for querying a single application
-      const criteria: { id?: string } = {};
+      const criteria: { _id?: string } = {};
 
       // Populate criteria based on the payload
-      if (payload?.id) criteria.id = payload.id;
+      if (payload?._id) criteria._id = payload._id;
 
       // Find a single application in the repository that matches the criteria
       const applicationsData: Application | null = await this.applicationRepository.findOne(criteria, {});
@@ -100,7 +100,7 @@ export class ApplicationService {
   deleteOneApplication = async (payload: DeleteApplication): Promise<PromiseResponse<Application | null, Error>> => {
     try {
       // Initialize criteria object for deleting a single application
-      const criteria: { id: string } = { id: payload._id };
+      const criteria: { _id: string } = { _id: payload._id };
 
       // Delete the application in the repository that matches the criteria
       const applicationsData: Application | null = await this.applicationRepository.deleteOne(criteria, {});
@@ -130,7 +130,10 @@ export class ApplicationService {
       delete updateData._id;
 
       // Update the application in the repository that matches the criteria
-      const applicationsData: Application | null = await this.applicationRepository.updateOne(criteria, updateData, {});
+      const applicationsData: Application | null = await this.applicationRepository.updateOne(criteria, updateData, {
+        new: true,
+        populate: ["userId"],
+      });
 
       // Return the updated application data or null if not found
       return { data: applicationsData };

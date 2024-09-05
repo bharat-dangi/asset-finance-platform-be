@@ -27,7 +27,7 @@ export const ApplicationSchema = Joi.object({
  * Allows optional fields for filtering applications, with support for null and empty values.
  */
 export const GetApplicationSchema = Joi.object({
-  id: Joi.string().allow(null, "").optional(), // Optional string that allows null or an empty string
+  _id: Joi.string().allow(null, "").optional(), // Optional string that allows null or an empty string
   income: Joi.number().allow(null).optional(), // Optional number that allows null
   expenses: Joi.number().allow(null).optional(), // Optional number that allows null
   assets: Joi.number().allow(null).optional(), // Optional number that allows null
@@ -40,7 +40,7 @@ export const GetApplicationSchema = Joi.object({
  * Ensures the application ID is provided and is a string.
  */
 export const DeleteApplicationSchema = Joi.object({
-  id: Joi.string().required(), // Required string for the application ID
+  _id: Joi.string().required(), // Required string for the application ID
 });
 
 /**

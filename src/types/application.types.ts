@@ -17,7 +17,7 @@ export interface Application {
  * @description Represents the criteria for retrieving finance application details. Used for filtering applications in queries.
  */
 export interface GetApplication {
-  id?: string; // Optional ID of the application.
+  _id?: string; // Optional ID of the application.
   income?: number; // Optional income of the applicant for filtering.
   expenses?: number; // Optional expenses of the applicant for filtering.
   assets?: number; // Optional assets of the applicant for filtering.

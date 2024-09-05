@@ -69,7 +69,7 @@ class ApplicationController {
   static async deleteOneApplication(req: Request, res: Response, next: NextFunction) {
     try {
       const applicationService: ApplicationService = container.resolve("ApplicationService") as ApplicationService;
-      const payloadData: DeleteApplication = req.params as any;
+      const payloadData: DeleteApplication = req.query as any;
 
       const { data, error } = await applicationService.deleteOneApplication(payloadData);
       if (error) return next(new ErrorResponse(error, 500));

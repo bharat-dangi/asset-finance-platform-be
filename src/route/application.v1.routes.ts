@@ -1,7 +1,12 @@
 import express, { RequestHandler } from "express";
 import { validationHandler, validationQueryHandler } from "../middleware/validator.middleware";
 import { ApplicationController } from "../controller/application.controller";
-import { ApplicationSchema, DeleteApplicationSchema, GetApplicationSchema } from "../validator/application.validator";
+import {
+  ApplicationSchema,
+  DeleteApplicationSchema,
+  GetApplicationSchema,
+  updateApplicationSchema,
+} from "../validator/application.validator";
 
 const applicationV1Router = express.Router();
 
@@ -26,6 +31,6 @@ applicationV1Router
 
 applicationV1Router
   .route("/update-one-application")
-  .patch(validationHandler(DeleteApplicationSchema), ApplicationController.updateOneApplication as RequestHandler);
+  .patch(validationHandler(updateApplicationSchema), ApplicationController.updateOneApplication as RequestHandler);
 
 export { applicationV1Router };
