@@ -1,20 +1,11 @@
-/**
- * @interface PersonalDetails
- * @description Represents personal details of a user for finance applications.
- */
-interface PersonalDetails {
-  name: string; // Name of the user.
-  age: number; // Age of the user.
-  address: string; // Address of the user.
-}
+import { User } from "./user.types";
 
 /**
  * @interface Application
  * @description Represents a finance application details.
  */
-
 export interface Application {
-  personalDetails: PersonalDetails; // Personal details of the applicant.
+  personalDetails: User; // Personal details of the applicant.
   income: number; // Income of the applicant.
   expenses: number; // Expenses of the applicant.
   assets: number; // Assets of the applicant.

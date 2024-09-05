@@ -1,4 +1,4 @@
-import { Schema } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 import { Application } from "../../types/application.types";
 
 /**
@@ -6,11 +6,7 @@ import { Application } from "../../types/application.types";
  * @description Mongoose schema for finance application.
  */
 export const ApplicationSchemaBase = {
-  personalDetails: {
-    name: { type: String, required: true },
-    age: { type: Number, required: true },
-    address: { type: String, required: true },
-  },
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   income: { type: Number, required: true },
   expenses: { type: Number, required: true },
   assets: { type: Number, required: true },
