@@ -18,4 +18,4 @@ COPY . .
 EXPOSE 5000
 
 # Step 8: Define the command to run the app
-CMD ["node", "dist/server.js"]
+CMD ["npm", "start"]
