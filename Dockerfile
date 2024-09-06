@@ -13,8 +13,6 @@ RUN npm install
 # Step 5: Copy the rest of your application
 COPY . .
 
-# Step 6: Build the TypeScript project
-RUN npm run build
 
 # Step 7: Expose the port the app will run on
 EXPOSE 5000
