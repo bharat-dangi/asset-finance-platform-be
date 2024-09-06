@@ -12,7 +12,7 @@ export class ErrorResponse extends Error {
    * @param {string} message - The error message that provides details about the error.
    * @param {number} statusCode - The HTTP status code associated with the error.
    */
-  constructor(message: string, statusCode: number) {
+  constructor(message: any, statusCode: any) {
     super(message); // Call the parent class constructor with the error message
     this.statusCode = statusCode; // Set the HTTP status code for the error
   }

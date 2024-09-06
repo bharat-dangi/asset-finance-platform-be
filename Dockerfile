@@ -1,24 +1,23 @@
-# Use the official Node.js image.
-# Use Node.js 20 LTS.
-FROM node:20
+# Step 1: Use official Node.js image as the base image
+FROM node:20-alpine
 
-# Create and change to the app directory.
-WORKDIR /usr/src/app
+# Step 2: Set working directory
+WORKDIR /app
 
-# Copy application dependency manifests to the container image.
-# A wildcard is used to ensure both package.json AND package-lock.json are copied.
+# Step 3: Copy package.json and package-lock.json (if available)
 COPY package*.json ./
 
-# Install production dependencies.
-RUN npm install --production
+# Step 4: Install dependencies
+RUN npm install
 
-# Copy local code to the container image.
+# Step 5: Copy the rest of your application
 COPY . .
 
-# Build the TypeScript application.
+# Step 6: Build the TypeScript project
 RUN npm run build
 
-# Run the web service on container startup.
-CMD ["node", "dist/server.js"]
-
+# Step 7: Expose the port the app will run on
 EXPOSE 5000
+
+# Step 8: Define the command to run the app
+CMD ["npm", "start"]
