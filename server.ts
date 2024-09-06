@@ -1,3 +1,4 @@
+require("newrelic");
 import { app } from "./app";
 import { connectDB } from "./src/config/db";
 import { registerDependencies } from "./src/config/dependency";
