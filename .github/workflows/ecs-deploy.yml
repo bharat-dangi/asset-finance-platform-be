@@ -26,10 +26,6 @@ jobs:
       - name: Run Unit Tests
         run: npm run test-unit
 
-      # Step 3: Build the project
-      - name: Build project
-        run: npm run build
-
       # Step 4: Log in to Amazon ECR
       - name: Log in to Amazon ECR
         id: login-ecr
