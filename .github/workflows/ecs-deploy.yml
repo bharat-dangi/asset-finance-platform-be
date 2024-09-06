@@ -26,7 +26,7 @@ jobs:
       - name: Run Unit Tests
         run: npm run test-unit
 
-      # Step 3: Build the project (only runs if tests pass)
+      # Step 3: Build the project
       - name: Build project
         run: npm run build
 
@@ -34,6 +34,10 @@ jobs:
       - name: Log in to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }} # Pass the AWS region here
 
       # Step 5: Build, tag, and push Docker image
       - name: Build, tag, and push Docker image
@@ -49,4 +53,4 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: ${{ secrets.AWS_REGION }}
+          AWS_REGION: ${{ secrets.AWS_REGION }} # Pass the region to this step as well
