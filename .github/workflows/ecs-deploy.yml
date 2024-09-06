@@ -54,3 +54,26 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ secrets.AWS_REGION }} # Pass the region to this step as well
+
+      # Step 7: Delete previous images from ECR (except the latest)
+      - name: Delete previous ECR images
+        run: |
+          # Get the image digest of the latest image
+          latest_image_digest=$(aws ecr list-images \
+            --repository-name ${{ secrets.ECR_REPOSITORY }} \
+            --region ${{ secrets.AWS_REGION }} \
+            --filter "tagStatus=TAGGED" \
+            --query 'imageIds[?imageTag==`latest`].imageDigest' \
+            --output text)
+
+          # Get the list of all image digests except the latest one
+          image_digests=$(aws ecr list-images \
+            --repository-name ${{ secrets.ECR_REPOSITORY }} \
+            --region ${{ secrets.AWS_REGION }} \
+            --query 'imageIds[?imageDigest!=`'"$latest_image_digest"'`].imageDigest' \
+            --output text)
+
+          # Delete images if they exist
+          for digest in $image_digests; do
+            aws ecr batch-delete-image --repository-name ${{ secrets.ECR_REPOSITORY }} --region ${{ secrets.AWS_REGION }} --image-ids imageDigest=$digest
+          done
